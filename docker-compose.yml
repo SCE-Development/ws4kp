@@ -1,0 +1,13 @@
+version: '3'
+services:
+  ws4kp-cors-anywhere:
+    build:
+      context: ./cors-anywhere
+      dockerfile: ./Dockerfile
+  ws4kp-nginx:
+    image: nginx@sha256:f2802c2a9d09c7aa3ace27445dfc5656ff24355da28e7b958074a0111e3fc076
+    volumes:
+      - ./:/usr/share/nginx/html:ro
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - '8000:80'

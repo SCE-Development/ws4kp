@@ -281,7 +281,7 @@ var GetCurrentWeather = function(WeatherParameters)
     var Url = "https://forecast.weather.gov/MapClick.php?FcstType=dwml";
     Url += "&lat=" + WeatherParameters.Latitude.toString();
     Url += "&lon=" + WeatherParameters.Longitude.toString();
-    //Url = "cors/?u=" + encodeURIComponent(Url);
+    //Url = "cors/?u=" + Url;
 
     var success = function (xml)
     {
@@ -329,7 +329,7 @@ var GetCurrentWeather = function(WeatherParameters)
         url: Url,
         dataType: "xml",
         crossDomain: true,
-        cache: false,
+        cache: true,
         success: success,
         error: function (xhr, error, errorThrown)
         {
@@ -380,7 +380,7 @@ var GetClosestCurrentWeather = function (WeatherParameters, Distance)
     //Url += "&radialDistance=" + Distance.toString();
     //Url += ";" + WeatherParameters.Longitude;
     //Url += "," + WeatherParameters.Latitude;
-    ////Url = "cors/?u=" + encodeURIComponent(Url);
+    ////Url = "cors/?u=" + Url;
 
     // Get the current weather from the next closest station.
     var Url = "https://aviationweather.gov/api/data/metar?format=xml&hours=1";
@@ -392,7 +392,7 @@ var GetClosestCurrentWeather = function (WeatherParameters, Distance)
         url: Url,
         dataType: "xml",
         crossDomain: true,
-        cache: false,
+        cache: true,
         success: function (xml)
         {
             var $xml = $(xml);
@@ -521,7 +521,7 @@ var GetClosestCurrentWeather = function (WeatherParameters, Distance)
 //    Url += (Now.getMonth() + 1).pad(2) + "/";
 //    Url += Now.getDate().pad(2) + "/";
 //    Url += "MonthlyHistory.html";
-//    //Url = "cors/?u=" + encodeURIComponent(Url);
+//    //Url = "cors/?u=" + Url;
 
 //    // Load the xml file using ajax 
 //    $.ajaxCORS({
@@ -529,7 +529,7 @@ var GetClosestCurrentWeather = function (WeatherParameters, Distance)
 //        url: Url,
 //        dataType: "html",
 //        crossDomain: true,
-//        cache: false,
+//        cache: true,
 //        success: function (html)
 //        {
 //            var $html = $(html);
@@ -568,13 +568,13 @@ var GetClosestCurrentWeather = function (WeatherParameters, Distance)
 //                Url += (Now.getMonth() + 1).pad(2) + "/";
 //                Url += Now.getDate().pad(2) + "/";
 //                Url += "MonthlyHistory.html";
-//                //Url = "cors/?u=" + encodeURIComponent(Url);
+//                //Url = "cors/?u=" + Url;
 //                $.ajaxCORS({
 //                    type: "GET",
 //                    url: Url,
 //                    dataType: "html",
 //                    crossDomain: true,
-//                    cache: false,
+//                    cache: true,
 //                    success: function (html)
 //                    {
 //                        var $html = $(html);
@@ -619,7 +619,7 @@ var GetMonthPrecipitation = function (WeatherParameters) {
         url: Url,
         dataType: "json",
         crossDomain: true,
-        cache: false,
+        cache: true,
         success: function (json) {
             GetMonthPrecipitationProcessResponse(WeatherParameters, json, 0);
         },
@@ -640,7 +640,7 @@ var GetMonthPrecipitation = function (WeatherParameters) {
     //    url: Url,
     //    dataType: "json",
     //    crossDomain: true,
-    //    cache: false,
+    //    cache: true,
     //    success: function (json) {
     //        WeatherParameters.WeatherMonthlyTotalsParser = new WeatherMonthlyTotalsParser(json);
     //        console.log(WeatherParameters.WeatherMonthlyTotalsParser);
@@ -671,7 +671,7 @@ var GetMonthPrecipitation = function (WeatherParameters) {
     //                url: Url,
     //                dataType: "json",
     //                crossDomain: true,
-    //                cache: false,
+    //                cache: true,
     //                success: function (json) {
     //                    WeatherParameters.MoonPhasesParser = new MoonPhasesParser3(json);
     //                    console.log(WeatherParameters.MoonPhasesParser);
@@ -692,7 +692,7 @@ var GetMonthPrecipitation = function (WeatherParameters) {
     //                        url: Url,
     //                        dataType: "json",
     //                        crossDomain: true,
-    //                        cache: false,
+    //                        cache: true,
     //                        success: function (json) {
     //                            WeatherParameters.SunRiseSetParserTomorrow = new SunRiseSetParser3(json);
     //                            console.log(WeatherParameters.SunRiseSetParserTomorrow);
@@ -754,7 +754,7 @@ var GetMonthPrecipitationProcessResponse = function (WeatherParameters, json, in
         url: Url,
         dataType: "text",
         crossDomain: true,
-        cache: false,
+        cache: true,
         success: function (text)
         {
             WeatherParameters.WeatherMonthlyTotalsParser = new WeatherMonthlyTotalsParser(text);
@@ -785,7 +785,7 @@ var GetMonthPrecipitationProcessResponse = function (WeatherParameters, json, in
                     url: Url,
                     dataType: "json",
                     crossDomain: true,
-                    cache: false,
+                    cache: true,
                     success: function (json)
                     {
                         WeatherParameters.MoonPhasesParser = new MoonPhasesParser3(json);
@@ -807,7 +807,7 @@ var GetMonthPrecipitationProcessResponse = function (WeatherParameters, json, in
                             url: Url,
                             dataType: "json",
                             crossDomain: true,
-                            cache: false,
+                            cache: true,
                             success: function (json)
                             {
                                 WeatherParameters.SunRiseSetParserTomorrow = new SunRiseSetParser3(json);
@@ -843,7 +843,7 @@ var GetTideInfo = function (WeatherParameters)
     var Url = "https://tidesandcurrents.noaa.gov/tide_predictions.html?type=Tide+Predictions&searchfor="; //[Latitude]%2C[Longitude]";
     Url += WeatherParameters.Latitude + "%2C";
     Url += WeatherParameters.Longitude;
-    //Url = "cors/?u=" + encodeURIComponent(Url);
+    //Url = "cors/?u=" + Url;
 
     var MaxStationCount = 2;
     var StationCount = 0;
@@ -857,7 +857,7 @@ var GetTideInfo = function (WeatherParameters)
         url: Url,
         dataType: "html",
         crossDomain: true,
-        cache: false,
+        cache: true,
         success: function (html)
         {
             var $html = $(html);
@@ -887,7 +887,7 @@ var GetTideInfo = function (WeatherParameters)
                 //var Url = "https://tidesandcurrents.noaa.gov/stationhome.html?id="
                 var Url = "https://tidesandcurrents.noaa.gov/noaatidepredictions/NOAATidesFacade.jsp?Stationid="
                 Url += StationId;
-                //Url = "cors/?u=" + encodeURIComponent(Url);
+                //Url = "cors/?u=" + Url;
 
                 if (WeatherParameters.WeatherTides == null)
                 {
@@ -906,7 +906,7 @@ var GetTideInfo = function (WeatherParameters)
                     url: Url,
                     dataType: "html",
                     crossDomain: true,
-                    cache: false,
+                    cache: true,
                     success: function (html)
                     {
                         var $html = $(html);
@@ -998,7 +998,7 @@ var GetTideInfo2 = function (WeatherParameters) {
     var Url = "https://tidesandcurrents.noaa.gov/mdapi/latest/webapi/tidepredstations.json?"; //lat=40&lon=-73&radius=50";
     Url += "lat=" + WeatherParameters.Latitude + "&";
     Url += "lon=" + WeatherParameters.Longitude + "&radius=50";
-    //Url = "cors/?u=" + encodeURIComponent(Url);
+    //Url = "cors/?u=" + Url;
 
     var MaxStationCount = 2;
     var StationCount = 0;
@@ -1012,7 +1012,7 @@ var GetTideInfo2 = function (WeatherParameters) {
         url: Url,
         dataType: "json",
         crossDomain: true,
-        cache: false,
+        cache: true,
         success: function (json) {
             var StationIds = $(json.stationList);
 
@@ -1057,7 +1057,7 @@ var GetTideInfo2 = function (WeatherParameters) {
                     url: Url,
                     dataType: "json",
                     crossDomain: true,
-                    cache: false,
+                    cache: true,
                     success: function (json) {
 
                         if (json.error)
@@ -1372,14 +1372,14 @@ var GetOutlook = function (WeatherParameters)
     };
 
     var TempUrl = "https://www.cpc.ncep.noaa.gov/products/predictions/30day/off14_temp.gif";
-    TempUrl = "cors/?u=" + encodeURIComponent(TempUrl);
+    TempUrl = "cors/?u=" + TempUrl;
     var TempImage = new Image();
     TempImage.onload = ImageOnLoad;
     TempImage.onerror = ImageOnError;
     TempImage.src = TempUrl;
 
     var PrcpUrl = "https://www.cpc.ncep.noaa.gov/products/predictions/30day/off14_prcp.gif";
-    PrcpUrl = "cors/?u=" + encodeURIComponent(PrcpUrl);
+    PrcpUrl = "cors/?u=" + PrcpUrl;
     var PrcpImage = new Image();
     PrcpImage.onload = ImageOnLoad;
     TempImage.onerror = ImageOnError;
@@ -1646,7 +1646,7 @@ var GetMarineForecast = function (WeatherParameters)
         url: Url,
         dataType: "html",
         crossDomain: true,
-        cache: false,
+        cache: true,
         success: function (html)
         {
             ////var $html = $(html);
@@ -1703,7 +1703,7 @@ var GetMarineForecast = function (WeatherParameters)
                 url: Url,
                 dataType: "html",
                 crossDomain: true,
-                cache: false,
+                cache: true,
                 success: function (html)
                 {
                     var $html = $(html);
@@ -2308,7 +2308,7 @@ var GetAirQuality = function (WeatherParameters)
         url: Url,
         dataType: "html",
         crossDomain: true,
-        cache: false,
+        cache: true,
         success: function (html)
         {
             var $html = $(html);
@@ -2433,7 +2433,7 @@ var GetAirQuality2 = function (WeatherParameters)
         url: Url,
         dataType: "html",
         crossDomain: true,
-        cache: false,
+        cache: true,
         success: function (html)
         {
             var $html = $(html);
@@ -2522,7 +2522,7 @@ var GetAirQuality3 = function (WeatherParameters)
         url: Url,
         dataType: "json",
         crossDomain: true,
-        cache: false,
+        cache: true,
         success: function (json)
         {
             var maxAQI = 0;
@@ -2802,7 +2802,7 @@ var GetMoonPhases = function (WeatherParameters)
     Url += Now.getDate().pad(2) + "/";
     Url += Now.getFullYear().pad();
     Url += "&tz=" + tz.toString();
-    //Url = "cors/?u=" + encodeURIComponent(Url);
+    //Url = "cors/?u=" + Url;
 
     // Load the xml file using ajax 
     $.ajax({
@@ -2810,7 +2810,7 @@ var GetMoonPhases = function (WeatherParameters)
         url: Url,
         dataType: "json",
         crossDomain: true,
-        cache: false,
+        cache: true,
         success: function (json)
         {
             console.log(json);
@@ -2872,7 +2872,7 @@ var GetSunRiseSets = function (WeatherParameters, Tomorrow)
     Url += Now.getDate().pad(2) + "/";
     Url += Now.getFullYear().pad();
     Url += "&tz=" + tz.toString();
-    //Url = "cors/?u=" + encodeURIComponent(Url);
+    //Url = "cors/?u=" + Url;
 
     // Load the xml file using ajax 
     $.ajax({
@@ -2880,7 +2880,7 @@ var GetSunRiseSets = function (WeatherParameters, Tomorrow)
         url: Url,
         dataType: "json",
         crossDomain: true,
-        cache: false,
+        cache: true,
         success: function (json)
         {
             console.log(json);
@@ -2957,7 +2957,7 @@ Date.prototype.dst = function ()
 //        url: Url,
 //        dataType: "html",
 //        crossDomain: true,
-//        cache: false,
+//        cache: true,
 //        success: function (html)
 //        {
 //            var $html = $(html);
@@ -2987,7 +2987,7 @@ Date.prototype.dst = function ()
 //    var ZoneId = WeatherParameters.ZoneId;
 
 //    var Url = "http://www2.ehs.niu.edu/emulator/" + RadarId + "/";
-//    //Url = "cors/?u=" + encodeURIComponent(Url);
+//    //Url = "cors/?u=" + Url;
 
 //    // Load the xml file using ajax 
 //    $.ajaxCORS({
@@ -2995,7 +2995,7 @@ Date.prototype.dst = function ()
 //        url: Url,
 //        dataType: "html",
 //        crossDomain: true,
-//        cache: false,
+//        cache: true,
 //        success: function (html)
 //        {
 //            var $html = $(html);
@@ -3040,7 +3040,7 @@ var GetWeatherHazards3 = function (WeatherParameters)
     };
 
     var Url = "https://api.weather.gov/alerts/active.atom?zone=" + ZoneId;
-    //Url = "cors/?u=" + encodeURIComponent(Url);
+    //Url = "cors/?u=" + Url;
 
     // Load the xml file using ajax 
     $.ajaxCORS({
@@ -3048,7 +3048,7 @@ var GetWeatherHazards3 = function (WeatherParameters)
         url: Url,
         dataType: "text",
         crossDomain: true,
-        cache: false,
+        cache: true,
         success: function (text)
         {
             // IE doesn't support XML tags with colons.
@@ -3119,7 +3119,7 @@ var GetWeatherHazards3 = function (WeatherParameters)
             $(HazardUrls).each(function ()
             {
                 var Url = this.toString();
-                //Url = "cors/?u=" + encodeURIComponent(Url);
+                //Url = "cors/?u=" + Url;
 
                 $.ajaxCORS({
                     type: "GET",
@@ -3174,7 +3174,7 @@ var GetWeatherMetar = function (WeatherParameters)
 
     //Url += "," + (new Date().getTime()); // Prevents caching
     //Url = "https://crossorigin.me/" + Url; // Need to do this for Chrome and CORS
-    //Url = "cors/?u=" + encodeURIComponent(Url);
+    //Url = "cors/?u=" + Url;
 
     //<script type="application/javascript"
     //    src="http://server.example.com/Users/1234?callback=parseResponse">
@@ -3193,7 +3193,7 @@ var GetWeatherMetar = function (WeatherParameters)
         url: Url,
         dataType: "xml",
         crossDomain: true,
-        //cache: false,
+        //cache: true,
         success: function (xml)
         {
             var $xml = $(xml);
@@ -3232,7 +3232,7 @@ var GetWeatherForecast = function (WeatherParameters)
     Url += WeatherParameters.ZoneId.toLowerCase() + ".txt";
     //Url += "," + (new Date().getTime()); // Prevents caching
     //Url = "https://crossorigin.me/" + Url; // Need to do this for Chrome and CORS
-    //Url = "cors/?u=" + encodeURIComponent(Url);
+    //Url = "cors/?u=" + Url;
 
     //var Count = 0;
 
@@ -3244,7 +3244,7 @@ var GetWeatherForecast = function (WeatherParameters)
     //        url: Url,
     //        dataType: "text",
     //        crossDomain: true,
-    //        cache: false,
+    //        cache: true,
     //        success: function (text)
     //        {
     //            //console.log(text);
@@ -3267,7 +3267,7 @@ var GetWeatherForecast = function (WeatherParameters)
     //                Url = "http://tgftp.nws.noaa.gov/data/forecasts/zone/";
     //                Url += WeatherParameters.ZoneId.substr(0, 2).toLowerCase() + "/";
     //                Url += WeatherParameters.ZoneId.toLowerCase() + ".txt";
-    //                //Url = "cors/?u=" + encodeURIComponent(Url);
+    //                //Url = "cors/?u=" + Url;
     //                Url = "https://crossorigin.me/" + Url; // Need to do this for Chrome and CORS
 
     //                DoAjax();
@@ -3284,7 +3284,8 @@ var GetWeatherForecast = function (WeatherParameters)
         url: Url,
         dataType: "text",
         crossDomain: true,
-        cache: false,
+        // prevent &_=123456 from being added
+        cache: true,
         success: function (text)
         {
             //console.log(text);
@@ -3465,13 +3466,14 @@ setTimeout(() =>
                 return;
             }
             window.clearInterval(GetWeatherIntervalId);
-
+            console.log('WHY ', {_Url})
+            console.trace()
             $.ajax({
                 type: "GET",
-                url: _Url,
+                url: decodeURIComponent(_Url),
                 dataType: "html",
                 crossDomain: true,
-                cache: false,
+                cache: true,
                 success: function (html)
                 {
                     //"http://forecast.weather.gov/MapClick.php?lat=40.8224&lon=-72.9847"
@@ -3563,7 +3565,8 @@ setTimeout(() =>
 
                     //http://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/reverseGeocode?location=-72.971293%2C+40.850043&f=pjson
                     request = $.ajax({
-                        url: location.protocol + '//geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/reverseGeocode',
+                        url: 'https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/reverseGeocode',
+                        // url: window.location.origin + '/cors?u=' + 'https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/reverseGeocode',
                         data: {
                             location: Longitude + "," + Latitude,
                             distance: 1000, // Find location upto 1 KM.
@@ -8256,7 +8259,7 @@ var GetLatLng = function (Url)
     //    url: "1" + Url,
     //    dataType: "html",
     //    crossDomain: true,
-    //    cache: false,
+    //    cache: true,
     //    success: function (html)
     //    {
     //        //"http://forecast.weather.gov/MapClick.php?lat=40.8224&lon=-72.9847"
@@ -9180,7 +9183,7 @@ var GetTravelWeather = function (WeatherParameters)
 
         //console.log("TravelCities: Url='" + Url + "'");
 
-        //Url = "cors/?u=" + encodeURIComponent(Url);
+        //Url = "cors/?u=" + Url;
 
         // Load the xml file using ajax 
         $.ajaxCORS({
@@ -9188,7 +9191,7 @@ var GetTravelWeather = function (WeatherParameters)
             url: Url,
             dataType: "xml",
             crossDomain: true,
-            cache: false,
+            cache: true,
             success: function (xml)
             {
                 var $xml = $(xml);
@@ -9711,7 +9714,7 @@ var GetRegionalStations = function (WeatherParameters, Distance)
     //Url += ";" + WeatherParameters.Longitude;
     //Url += "," + WeatherParameters.Latitude;
     ////Url += "," + (new Date().getTime()); // Prevents caching
-    ////Url = "cors/?u=" + encodeURIComponent(Url);
+    ////Url = "cors/?u=" + Url;
 
     // Get the current weather from the next closest station.
     var Url = "https://aviationweather.gov/api/data/metar?format=xml&hours=1";
@@ -9726,7 +9729,7 @@ var GetRegionalStations = function (WeatherParameters, Distance)
         url: Url,
         dataType: "xml",
         crossDomain: true,
-        cache: false,
+        cache: true,
         success: function (xml)
         {
             var $xml = $(xml);
@@ -9886,7 +9889,7 @@ var GetDwmlRegionalStations = function (WeatherParameters, Distance)
         var Url = "https://forecast.weather.gov/MapClick.php?FcstType=dwml";
         Url += "&lat=" + _WeatherMetarsParser.data_METAR.latitude.toString();
         Url += "&lon=" + _WeatherMetarsParser.data_METAR.longitude.toString();
-        //Url = "cors/?u=" + encodeURIComponent(Url);
+        //Url = "cors/?u=" + Url;
 
         // Load the xml file using ajax 
         $.ajaxCORS({
@@ -9894,7 +9897,7 @@ var GetDwmlRegionalStations = function (WeatherParameters, Distance)
             url: Url,
             dataType: "xml",
             crossDomain: true,
-            cache: false,
+            cache: true,
             success: function (xml)
             {
                 var $xml = $(xml);
@@ -10741,7 +10744,7 @@ var ShowRegionalMap = function (WeatherParameters, TomorrowForecast1, TomorrowFo
             var Url = "https://forecast.weather.gov/MapClick.php?FcstType=dwml";
             Url += "&lat=" + RegionalCity.Latitude.toString();
             Url += "&lon=" + RegionalCity.Longitude.toString();
-            //Url = "cors/?u=" + encodeURIComponent(Url);
+            //Url = "cors/?u=" + Url;
 
             // Load the xml file using ajax 
             $.ajaxCORS({
@@ -10749,7 +10752,7 @@ var ShowRegionalMap = function (WeatherParameters, TomorrowForecast1, TomorrowFo
                 url: Url,
                 dataType: "xml",
                 crossDomain: true,
-                cache: false,
+                cache: true,
                 success: function (xml)
                 {
                     var $xml = $(xml);
@@ -10851,7 +10854,7 @@ var ShowRegionalMap = function (WeatherParameters, TomorrowForecast1, TomorrowFo
 
                     //var Url = "https://aviationweather.gov/api/data/dataserver?dataSource=metars&requestType=retrieve&format=xml&hoursBeforeNow=3";
                     //Url += "&stationString=" + StationId;
-                    //Url = "cors/?u=" + encodeURIComponent(Url);
+                    //Url = "cors/?u=" + Url;
                     var Url = "https://aviationweather.gov/api/data/metar?format=xml&hours=3";
                     Url += "&ids=" + StationId;
 
@@ -10861,7 +10864,7 @@ var ShowRegionalMap = function (WeatherParameters, TomorrowForecast1, TomorrowFo
                         url: Url,
                         dataType: "xml",
                         crossDomain: true,
-                        cache: false,
+                        cache: true,
                         success: function (xml)
                         {
                             var $xml = $(xml);
@@ -11414,7 +11417,7 @@ var ShowDopplerMap = function (WeatherParameters)
         // Find the most current doppler radar image.
         //var Url = "http://radar.weather.gov/Conus/RadarImg/mosaic_times.txt";
         var Url = "https://radar.weather.gov/Conus/RadarImg/";
-        //Url = "cors/?u=" + encodeURIComponent(Url);
+        //Url = "cors/?u=" + Url;
 
         //var TimesMax = 6;
         var TimesCount = 0;
@@ -11428,7 +11431,7 @@ var ShowDopplerMap = function (WeatherParameters)
             url: Url,
             dataType: "text",
             crossDomain: true,
-            cache: false,
+            cache: true,
             success: function (text)
             {
                 //console.log(text);
@@ -11442,7 +11445,7 @@ var ShowDopplerMap = function (WeatherParameters)
                 //    //http://radar.weather.gov/Conus/RadarImg/Conus_20161004_0028_N0Ronly.gif
                 //    var Url = "http://radar.weather.gov/Conus/RadarImg/Conus_";
                 //    Url += Times[Index] + "_N0Ronly.gif";
-                //    Url = "cors/?u=" + encodeURIComponent(Url);
+                //    Url = "cors/?u=" + Url;
 
                 //    RadarUrls.push(Url);
                 //}
@@ -11465,13 +11468,13 @@ var ShowDopplerMap = function (WeatherParameters)
                 }
 
                 // add the fixed named latest image
-                RadarUrls.push("cors/?u=" + encodeURIComponent(latest));
+                RadarUrls.push("cors/?u=" + latest);
                 for (var Index = UrlsUnd; Index > UrlsUnd - _DopplerRadarImageMax + 1; Index--)
                 {
                     //http://radar.weather.gov/Conus/RadarImg/Conus_20161004_0028_N0Ronly.gif
                     var Url = "https://radar.weather.gov/Conus/RadarImg/";
                     Url += $(Urls[Index]).attr("href");
-                    Url = "cors/?u=" + encodeURIComponent(Url);
+                    Url = "cors/?u=" + Url;
 
                     RadarUrls.push(Url);
                 }
@@ -11796,7 +11799,7 @@ var ShowDopplerMap2 = function (WeatherParameters)
                 url: UrlLink,
                 dataType: "text",
                 crossDomain: true,
-                cache: false,
+                cache: true,
                 success: function (text)
                 {
                     var $text = $(text);
@@ -11816,7 +11819,7 @@ var ShowDopplerMap2 = function (WeatherParameters)
                         }
 
                         Url += href;
-                        Url = "cors/?u=" + encodeURIComponent(Url);
+                        Url = "cors/?u=" + Url;
 
                         RadarUrls.push(Url);
                     }
@@ -13290,7 +13293,7 @@ var DrawScrollHazardText = function (WeatherParameters, context)
     }
 
     x = 640 - ((_UpdateScrollHazardTextMs / _UpdateWeatherUpdateMs) * 5);
-    if (x < ((text.length + 10) * 15 * -1)) // Wait an extra 5 characters.
+    if (x < (((text?.length || 0) + 10) * 15 * -1)) // Wait an extra 5 characters.
     {
         _UpdateScrollHazardTextMs = 0;
         x = 640;
@@ -13352,7 +13355,8 @@ $.ajaxCORS = function (e)
         
         if (Method.EncodeURIComponent == true)
         {
-            Url += encodeURIComponent(e.url);
+            // Url += encodeURIComponent(e.url);
+            Url += e.url;
         }
         else
         {
@@ -13521,8 +13525,9 @@ var RefreshSegments = function ()
 var AudioPlayToggle = function ()
 {
     //var audio = $("#audMusic")[0];
-
-    _IsAudioPlaying = !(_IsAudioPlaying);
+    // 20260427 no audio to prevent network errors during rtmp
+    _IsAudioPlaying = false;
+    // _IsAudioPlaying = !(_IsAudioPlaying);
 
     if (_IsAudioPlaying == true)
     {
@@ -13590,6 +13595,8 @@ var audMusic_OnError = function ()
 var RefreshStateOfMusicAudio = function ()
 {
     var IsAudioPlaying = _IsAudioPlaying;
+    // 20260427 no audio to prevent network errors during rtmp
+    _IsAudioPlaying = false;
 
     if (window.AudioContext)
     {
@@ -14913,7 +14920,7 @@ var GetRssFeed = function (RssUrl)
         url: RssUrl + "?rss=1",
         dataType: "xml",
         crossDomain: true,
-        cache: false,
+        cache: true,
         success: function (data)
         {
             var ScrollText = "";

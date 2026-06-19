@@ -2,10 +2,11 @@
 /// <reference path="jquery.touchSwipe.min.js" />
 
 // Redirect user to SSL version of site.
-if (location.protocol != "https:" && location.href.indexOf("localhost") == -1 && location.href.indexOf("192.") == -1)
-{
-    location.href = location.href.replace("http:", "https:");
-}
+// uhh how about no cuz we are running this locally
+// if (location.protocol != "https:" && location.href.indexOf("localhost") == -1 && location.href.indexOf("192.") == -1)
+// {
+//     location.href = location.href.replace("http:", "https:");
+// }
 
 var frmGetLatLng;
 var txtAddress;
