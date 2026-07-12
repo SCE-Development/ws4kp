@@ -10,25 +10,22 @@ services:
       - ./:/usr/share/nginx/html:ro
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
     ports:
-      - '8000:80'
+      - '8001:80'
   music:
-    container_name: music
     build:
       context: ./music
       dockerfile: Dockerfile
     volumes:
-      - ./combined.mp4:/media/combined.mp4:ro
+      - ./:/media/
     environment:
       - MUSIC_FILE=/media/combined.mp4
       # Publishes to the node-media-server "sound" channel, which lives in the
       # puppeteer-screen-recorder compose. We reach it over the host loopback
       # via nms's published 1935 port, so the two compose projects stay
       # independent (no shared docker network required).
-      - RTMP_MUSIC_STREAM_URL=rtmp://host.docker.internal:1935/live/weather/sound
+      - RTMP_MUSIC_STREAM_URL=rtmp://nms:1935/live/weather/sound
     # Docker Desktop resolves host.docker.internal automatically; this line
     # makes it resolve on Linux hosts too.
-    extra_hosts:
-      - 'host.docker.internal:host-gateway'
     restart: unless-stopped
 networks:
   default:
