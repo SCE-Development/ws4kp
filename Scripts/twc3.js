@@ -11007,7 +11007,7 @@ var ShowRegionalMap = function (WeatherParameters, TomorrowForecast1, TomorrowFo
     }
     else
     {
-        img.src = "images/basemap2.png";
+        img.src = "images/Basemap2.png";
     }
 }
 
