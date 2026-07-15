@@ -12860,6 +12860,7 @@ var DrawCurrentDateTime = function (context, bottom)
 
     // Get the current date and time.
     now = new Date();
+    now = new Date(now.getTime() + 7000);
     now = ConvertDateToTimeZone(now, _WeatherParameters.TimeZone);
 
     //time = "11:35:08 PM";
