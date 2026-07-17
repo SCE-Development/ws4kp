@@ -1373,7 +1373,7 @@ $(function ()
         else
         {
             request = $.ajax({
-                url: location.protocol + '//geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/find',
+                url: 'https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/find',
                 data: {
                     text: suggestion.value,
                     magicKey: suggestion.data,
@@ -1398,7 +1398,7 @@ $(function ()
     };
 
     $("#frmGetLatLng #txtAddress").devbridgeAutocomplete({
-        serviceUrl: location.protocol + '//geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/suggest',
+        serviceUrl: 'https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/suggest',
         deferRequestBy: 300,
         paramName: 'text',
         params: {
@@ -1776,7 +1776,7 @@ var btnGetGps_click = function ()
 
         //http://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/reverseGeocode?location=-72.971293%2C+40.850043&f=pjson
         request = $.ajax({
-            url: location.protocol + '//geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/reverseGeocode',
+            url: 'https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/reverseGeocode',
             data: {
                 location: Longitude + "," + Latitude,
                 distance: 1000, // Find location upto 1 KM.
