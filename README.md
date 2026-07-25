@@ -2,6 +2,14 @@ just do the below command and the website is acessible at http://localhost:8000
 ```
 docker-compose up
 ```
+
+This also starts a `music` container that loops the audio track of
+`./combined.mp4` and publishes it to the puppeteer-screen-recorder RTMP `sound`
+channel (`rtmp://host.docker.internal:1935/live/weather/sound`), which the
+weather streamer muxes into its live output. Put your background-music file at
+`./combined.mp4` in this repo root (any file with an audio track works; it loops
+forever and is gitignored). The streamer's node-media-server must be reachable
+on host port 1935.
 ---
 # WeatherStar 4000+
 
