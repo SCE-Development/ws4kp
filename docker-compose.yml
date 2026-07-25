@@ -10,7 +10,7 @@ services:
       - ./:/usr/share/nginx/html:ro
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
     ports:
-      - '8000:80'
+      - '8001:80'
   music:
     container_name: music
     build:

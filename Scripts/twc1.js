@@ -3449,7 +3449,7 @@ var ShowRegionalMap = function (WeatherParameters, TomorrowForecast)
 
     };
     img.onload = RegionalMapOnLoad;
-    img.src = "images/basemap2.png";
+    img.src = "images/Basemap2.png";
 }
 
 var DrawText = function (canvas, font, size, color, x, y, text)
