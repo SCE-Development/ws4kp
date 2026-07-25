@@ -151,7 +151,7 @@ var DrawPointOnMap = function (e)
         DrawBox(context, "red", X, Y, 4, 4);
 
     };
-    MapImage.src = "Images/off14_prcp.gif";
+    MapImage.src = "images/off14_prcp.gif";
 };
 
 var GetPixelColor = function (context, x, y)
