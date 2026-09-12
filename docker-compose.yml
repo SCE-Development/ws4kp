@@ -17,7 +17,7 @@ services:
       context: ./music
       dockerfile: Dockerfile
     volumes:
-      - ./combined.mp4:/media/combined.mp4:ro
+      - ./music:/media/
     environment:
       - MUSIC_FILE=/media/combined.mp4
       # Publishes to the node-media-server "sound" channel, which lives in the
